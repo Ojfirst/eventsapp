@@ -1,5 +1,5 @@
 const gettokenExpiration = () => {
-	const storedExpirationDate = localStorage.getItem('Expiration');
+	const storedExpirationDate = localStorage.getItem('expiration');
 	if (!storedExpirationDate) return;
 
 	// convert to date object
@@ -26,5 +26,5 @@ const tokenLoader = () => {
 	return getAuthToken();
 };
 
-export { tokenLoader, gettokenExpiration };
-export default getAuthToken;
+export { getAuthToken , gettokenExpiration };
+export default tokenLoader;

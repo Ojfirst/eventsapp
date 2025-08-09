@@ -44,14 +44,13 @@ const authAction = async ({ request }) => {
 		const responseData = await response.json();
 		const token = responseData.idToken;
 		if (responseData && responseData.localId && token) {
-			console.log('Login successful:', responseData.localId);
 			localStorage.setItem('token', token);
 			localStorage.setItem('userId', responseData.localId);
-
-			const expiration = new Date();
-			expiration.setMinutes(expiration.getMinutes() + 30);
-			localStorage.setItem('Expiration', expiration.toISOString());
-
+      // Set expiration date for the token
+			const expirationDate = new Date(
+        new Date().getTime() + +responseData.expiresIn * 1000 // Convert seconds to milliseconds
+      );  
+      localStorage.setItem('expiration', expirationDate.toISOString());
 			return redirect('/');
 		}
 	}

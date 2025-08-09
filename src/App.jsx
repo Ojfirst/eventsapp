@@ -18,11 +18,15 @@ import NewsletterPage from './components/NewsLetter/NewsLetter';
 import newsLetterAction from './loader-action/NewLetterAction';
 import AuthenticationPage from './routes/authentication/Authentication';
 import authAction from './loader-action/authAction';
+import tokenLoader from './util/auth';
+import logoutAction from './routes/logout';
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		Component: RootLayer,
+    loader: tokenLoader,
+    id: 'root',
 		errorElement: <ErrorPage />,
 		children: [
 			{ index: true, Component: HomePage },
@@ -61,7 +65,12 @@ const router = createBrowserRouter([
 				Component: NewsletterPage,
 				action: newsLetterAction,
 			},
-      {path: 'auth', Component: AuthenticationPage, action: authAction}
+			{
+				path: 'auth',
+				Component: AuthenticationPage,
+				action: authAction,
+			},
+			{ path: 'logout', action: logoutAction },
 		],
 	},
 ]);
