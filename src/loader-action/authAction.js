@@ -30,17 +30,31 @@ const authAction = async ({ request }) => {
 		}),
 	});
 
-
 	if (!response.ok) {
 		const errorData = await response.json();
-		console.log(errorData.error.message);
+		if (errorData && errorData.error && errorData.error.message) {
+			console.log(errorData.error.message);
+			return errorData.error.message;
+		}
 	}
 
-  if (mode === 'signup' && response.ok) {
-    return redirect('/?mode=login');
-  } else if (mode === 'login' && response.ok) {
-    return redirect('/');
-  }
+	if (mode === 'signup' && response.ok) {
+		return redirect('?mode=login');
+	} else if (mode === 'login' && response.ok) {
+		const responseData = await response.json();
+		const token = responseData.idToken;
+		if (responseData && responseData.localId && token) {
+			console.log('Login successful:', responseData.localId);
+			localStorage.setItem('token', token);
+			localStorage.setItem('userId', responseData.localId);
+
+			const expiration = new Date();
+			expiration.setMinutes(expiration.getMinutes() + 30);
+			localStorage.setItem('Expiration', expiration.toISOString());
+
+			return redirect('/');
+		}
+	}
 };
 
 export default authAction;
