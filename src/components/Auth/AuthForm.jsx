@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Form, Link, useNavigation, useSearchParams } from 'react-router';
 
 import classes from './AuthForm.module.css';
