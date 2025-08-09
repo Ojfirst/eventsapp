@@ -1,3 +1,5 @@
+import { redirect } from 'react-router';
+
 const gettokenExpiration = () => {
 	const storedExpirationDate = localStorage.getItem('expiration');
 	if (!storedExpirationDate) return;
@@ -26,5 +28,13 @@ const tokenLoader = () => {
 	return getAuthToken();
 };
 
-export { getAuthToken , gettokenExpiration };
+const checkAuthLoader = () => {
+	const token = getAuthToken();
+
+	if (!token) {
+		return redirect('/auth');
+	}
+};
+
+export { getAuthToken, gettokenExpiration, checkAuthLoader };
 export default tokenLoader;
