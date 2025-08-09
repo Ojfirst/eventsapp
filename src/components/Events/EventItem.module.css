@@ -34,3 +34,20 @@
   border: none;
   color: var(--color-primary-800);
 }
+
+@media (max-width: 768px) {
+  .event {
+    width: 90%;
+    margin: 1rem auto;
+  }
+
+  .event img {
+    width: 100%;
+    height: auto;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
