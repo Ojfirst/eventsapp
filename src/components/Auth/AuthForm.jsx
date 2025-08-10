@@ -1,8 +1,10 @@
-import { Form, Link, useNavigation, useSearchParams } from 'react-router';
+import { Form, Link, useNavigation, useSearchParams, useActionData } from 'react-router';
 
 import classes from './AuthForm.module.css';
 
 function AuthForm() {
+  const data = useActionData(); // Return data of an action
+  console.log(data);
 	const [searchParams] = useSearchParams();
 	const navigation = useNavigation();
 
@@ -13,6 +15,7 @@ function AuthForm() {
 		<>
 			<Form method="post" className={classes.form}>
 				<h1>{isLogin ? 'Log in' : 'Create a new user'}</h1>
+        {data && <p>{data}</p>}
 				<p>
 					<label htmlFor="email">Email</label>
 					<input id="email" type="email" name="email" required />
@@ -26,7 +29,7 @@ function AuthForm() {
 						{isLogin ? 'Create new user' : 'Login'}
 					</Link>
 					<button disabled={isSubmitting}>
-						{isSubmitting ? 'Submitting' : 'Send'}
+						{isSubmitting ? 'Submitting...' : 'Send'}
 					</button>
 				</div>
 			</Form>

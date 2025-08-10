@@ -38,6 +38,17 @@ function MainNavigation() {
 							Newsletter
 						</NavLink>
 					</li>
+					{token && (
+						<li>
+							<NavLink
+								to="/profile"
+								className={({ isActive }) =>
+									isActive ? classes.active : undefined
+								}>
+								Profile
+							</NavLink>
+						</li>
+					)}
 					{!token && (
 						<li>
 							<NavLink
@@ -49,11 +60,13 @@ function MainNavigation() {
 							</NavLink>
 						</li>
 					)}
-					{token && <li>
-						<Form action="/logout" method="post">
-							<button>Logout</button>
-						</Form>
-					</li>}
+					{token && (
+						<li>
+							<Form action="/logout" method="post">
+								<button>Logout</button>
+							</Form>
+						</li>
+					)}
 				</ul>
 			</nav>
 			<NewsletterSignup />

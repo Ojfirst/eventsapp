@@ -11,6 +11,12 @@ const gettokenExpiration = () => {
 	return duration;
 };
 
+const getUserEmail = () => {
+  const email = localStorage.getItem('email');
+  if (!email) return;
+  return email;
+};
+
 const getAuthToken = () => {
 	const token = localStorage.getItem('token');
 
@@ -30,11 +36,10 @@ const tokenLoader = () => {
 
 const checkAuthLoader = () => {
 	const token = getAuthToken();
-
 	if (!token) {
 		return redirect('/auth');
 	}
 };
 
-export { getAuthToken, gettokenExpiration, checkAuthLoader };
+export { getAuthToken, gettokenExpiration, checkAuthLoader, getUserEmail };
 export default tokenLoader;

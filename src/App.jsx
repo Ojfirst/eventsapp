@@ -20,6 +20,8 @@ import AuthenticationPage from './routes/authentication/Authentication';
 import authAction from './loader-action/authAction';
 import tokenLoader, { checkAuthLoader } from './util/auth';
 import logoutAction from './routes/logout';
+import Profile from './routes/Profile';
+import changePasswordAction from './loader-action/ChangePassword';
 
 const router = createBrowserRouter([
 	{
@@ -65,6 +67,12 @@ const router = createBrowserRouter([
 						loader: checkAuthLoader,
 					},
 				],
+			},
+			{
+				path: 'profile',
+				Component: Profile,
+				loader: checkAuthLoader,
+				action: changePasswordAction,
 			},
 			{
 				path: 'newsletter',

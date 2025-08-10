@@ -1,7 +1,8 @@
 import { redirect } from 'react-router';
 
 const authAction = async ({ request }) => {
-	const url = new URL(request.url);
+  // Parse the URL to get the mode (login or signup)
+	const url = new URL(request.url); 
 	const mode = (url.searchParams.get('mode') || 'login').toLowerCase();
 
 	if (mode !== 'login' && mode !== 'signup') {
@@ -33,7 +34,6 @@ const authAction = async ({ request }) => {
 	if (!response.ok) {
 		const errorData = await response.json();
 		if (errorData && errorData.error && errorData.error.message) {
-			console.log(errorData.error.message);
 			return errorData.error.message;
 		}
 	}
@@ -43,9 +43,11 @@ const authAction = async ({ request }) => {
 	} else if (mode === 'login' && response.ok) {
 		const responseData = await response.json();
 		const token = responseData.idToken;
-		if (responseData && responseData.localId && token) {
+		if (responseData && responseData.email && token && responseData.localId) {
+      // Store token and user ID in local storage
 			localStorage.setItem('token', token);
 			localStorage.setItem('userId', responseData.localId);
+      localStorage.setItem('email', responseData.email);
       // Set expiration date for the token
 			const expirationDate = new Date(
         new Date().getTime() + +responseData.expiresIn * 1000 // Convert seconds to milliseconds
