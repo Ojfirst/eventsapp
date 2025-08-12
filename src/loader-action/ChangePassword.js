@@ -1,12 +1,19 @@
+import { redirect } from 'react-router';
 import { getAuthToken } from '../util/auth';
 
 const changePasswordAction = async ({ request }) => {
 	const data = await request.formData();
-	const currentPassword = data.get('password');
+	const newPassword = data.get('password'); 
+	const confirmPasswoord = data.get('confrim-password'); // TODO
+
+  // TODO
+	if (newPassword !== confirmPasswoord) {
+		throw new Response(JSON.stringify({ message: 'Password mismatch' }));
+	}
 
 	// Validate passwords
-	if (!currentPassword || currentPassword.length < 6) {
-		return { message: 'Invalid password input' };
+	if (!newPassword || newPassword.length < 6) {
+		throw new Response(JSON.stringify({ message: 'Invalid password input' }));
 	}
 
 	const token = getAuthToken();
@@ -23,7 +30,7 @@ const changePasswordAction = async ({ request }) => {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
 				idToken: token,
-				password: currentPassword,
+				password: newPassword,
 				returnSecureToken: true,
 			}),
 		}
@@ -36,6 +43,8 @@ const changePasswordAction = async ({ request }) => {
 
 	const responseData = await response.json();
 	if (responseData) return 'Password changed successfully';
+  // TODO
+  return redirect('auth')
 };
 
 export default changePasswordAction;

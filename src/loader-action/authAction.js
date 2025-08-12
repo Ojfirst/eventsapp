@@ -1,61 +1,72 @@
 import { redirect } from 'react-router';
 
 const authAction = async ({ request }) => {
-  // Parse the URL to get the mode (login or signup)
-	const url = new URL(request.url); 
-	const mode = (url.searchParams.get('mode') || 'login').toLowerCase();
+  try {
+    // Parse the URL to get the mode (login or signup)
+    const url = new URL(request.url); 
+    const mode = (url.searchParams.get('mode') || 'login').toLowerCase();
 
-	if (mode !== 'login' && mode !== 'signup') {
-		throw new Response(JSON.stringify({ message: 'Unsupported mode' }), {
-			status: 422,
-		});
-	}
+    if (mode !== 'login' && mode !== 'signup') {
+      throw new Response(JSON.stringify({ message: 'Unsupported mode' }), {
+        status: 422,
+      });
+    }
 
-	const data = await request.formData();
-	const email = data.get('email');
-	const password = data.get('password');
+    const data = await request.formData();
+    const email = data.get('email');
+    const password = data.get('password');
 
-	// Choose endpoint based on mode
-	const endpoint =
-		mode === 'signup'
-			? 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCSZYvIiQRhl8FSSFDsSPoXZcjH2zNCCAA'
-			: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCSZYvIiQRhl8FSSFDsSPoXZcjH2zNCCAA';
+    // Choose endpoint based on mode
+    const endpoint =
+      mode === 'signup'
+        ? 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCSZYvIiQRhl8FSSFDsSPoXZcjH2zNCCAA'
+        : 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCSZYvIiQRhl8FSSFDsSPoXZcjH2zNCCAA';
 
-	const response = await fetch(endpoint, {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({
-			email,
-			password,
-			returnSecureToken: true,
-		}),
-	});
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        password,
+        returnSecureToken: true,
+      }),
+    });
 
-	if (!response.ok) {
-		const errorData = await response.json();
-		if (errorData && errorData.error && errorData.error.message) {
-			return errorData.error.message;
-		}
-	}
+    if (!response.ok) {
+      const errorData = await response.json();
+      if (errorData && errorData.error && errorData.error.message) {
+        return errorData.error.message;
+      } else {
+        return { message: 'An unknown error occurred.' };
+      }
+    }
 
-	if (mode === 'signup' && response.ok) {
-		return redirect('?mode=login');
-	} else if (mode === 'login' && response.ok) {
-		const responseData = await response.json();
-		const token = responseData.idToken;
-		if (responseData && responseData.email && token && responseData.localId) {
-      // Store token and user ID in local storage
-			localStorage.setItem('token', token);
-			localStorage.setItem('userId', responseData.localId);
-      localStorage.setItem('email', responseData.email);
-      // Set expiration date for the token
-			const expirationDate = new Date(
-        new Date().getTime() + +responseData.expiresIn * 1000 // Convert seconds to milliseconds
-      );  
-      localStorage.setItem('expiration', expirationDate.toISOString());
-			return redirect('/');
-		}
-	}
+    if (mode === 'signup' && response.ok) {
+      return redirect('?mode=login');
+    } else if (mode === 'login' && response.ok) {
+      const responseData = await response.json();
+      const token = responseData.idToken;
+      if (responseData && responseData.email && token && responseData.localId) {
+        // Store token and user ID in local storage
+        localStorage.setItem('token', token);
+        localStorage.setItem('userId', responseData.localId);
+        localStorage.setItem('email', responseData.email);
+        // Set expiration date for the token
+        const expirationDate = new Date(
+          new Date().getTime() + +responseData.expiresIn * 1000 // Convert seconds to milliseconds
+        );  
+        localStorage.setItem('expiration', expirationDate.toISOString());
+        return redirect('/');
+      }
+    }
+  } catch (error) {
+    if (error instanceof TypeError) {
+      // Network error (e.g., offline)
+      return { message: 'Check your internet connection.' };
+    }
+    // Unexpected error
+    return { message: error.message || 'An unexpected error occurred.' };
+  }
 };
 
 export default authAction;
