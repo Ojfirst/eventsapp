@@ -3,7 +3,7 @@ import { getAuthToken } from '../util/auth';
 
 const changePasswordAction = async ({ request }) => {
 	const data = await request.formData();
-	const newPassword = data.get('password'); 
+	const newPassword = data.get('new-password'); 
 	const confirmPasswoord = data.get('confrim-password'); // TODO
 
   // TODO

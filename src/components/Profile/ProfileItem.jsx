@@ -20,19 +20,19 @@ const ProfileItem = () => {
 			<label htmlFor="password">Change password</label>
 			<input
 				type="password"
-				id="password"
-				name="password"
-        autoFocus
-        autoComplete='email'
+				id="new-password"
+				name="new-password"
+				autoFocus
+				autoComplete="email"
 				placeholder="New password"
 				required
 			/>
 			<input
 				type="password"
-				id="password"
+				id="confirm-password"
 				name="confrim-password"
-        autoFocus
-        autoComplete='email'
+				autoFocus
+				autoComplete="email"
 				placeholder="Confirm password"
 				required
 			/>
