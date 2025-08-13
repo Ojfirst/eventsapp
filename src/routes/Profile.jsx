@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router';
 import Modal from '../components/UI/Modal';
 import UserProfile from '../components/Profile/UserProfile';
-import ChangePassword from '../components/Profile/ChangePassword';
+import ProfileForm from '../components/Profile/ProfileForm';
+import ChangePasswordForm from '../components/Profile/ChangePasswordForm';
 
-const Profile = (props) => {
+const Profile = () => {
 	const [showModal, setShowModal] = useState(false);
 
 	const showModalHandler = () => {
@@ -17,12 +18,13 @@ const Profile = (props) => {
 
 	return (
 		<>
-			<UserProfile onShowModal={showModalHandler} />
+      <ProfileForm />
 			{showModal && (
-				<Modal onClose={removeModalHandler}>
-					<ChangePassword />
+        <Modal onClose={removeModalHandler}>
+					<ChangePasswordForm />
 				</Modal>
 			)}
+      <UserProfile onShowModal={showModalHandler} />
 		</>
 	);
 };

@@ -4,7 +4,7 @@ import { getUserEmail } from '../../util/auth';
 
 import classes from './ProfileItem.module.css';
 
-const ChangePassword = () => {
+const ChangePasswordForm = () => {
 	const data = useActionData(); // Return data of an action
 	console.log(data);
 	const navigation = useNavigation();
@@ -47,4 +47,4 @@ const ChangePassword = () => {
 	);
 };
 
-export default ChangePassword;
+export default ChangePasswordForm;

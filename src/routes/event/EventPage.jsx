@@ -9,9 +9,7 @@ const EventPage = () => {
 
 	return (
 		<Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
-			<Await
-				resolve={events}
-				>
+			<Await resolve={events}>
 				{(loadedEvents) => <EventsList events={loadedEvents} />}
 			</Await>
 		</Suspense>
