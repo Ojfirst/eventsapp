@@ -11,9 +11,7 @@ const EventPage = () => {
 		<Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
 			<Await
 				resolve={events}
-				errorElement={
-					<div style={{ textAlign: 'center' }}>Error loading events...</div>
-				}>
+				>
 				{(loadedEvents) => <EventsList events={loadedEvents} />}
 			</Await>
 		</Suspense>

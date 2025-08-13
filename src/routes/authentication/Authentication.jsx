@@ -14,8 +14,7 @@ function AuthenticationPage() {
 		<>
 			{showModal && (
 				<Modal onClose={removeModalHandler}>
-					<AuthForm  />
-
+					<AuthForm />
 				</Modal>
 			)}
 		</>

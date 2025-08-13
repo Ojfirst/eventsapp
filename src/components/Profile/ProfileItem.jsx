@@ -6,12 +6,11 @@ import classes from './ProfileItem.module.css';
 
 const ProfileItem = () => {
 	const data = useActionData(); // Return data of an action
+	console.log(data);
 	const navigation = useNavigation();
 	const userEmail = getUserEmail();
 
 	const isSubmitting = navigation.state === 'submitting';
-
-	console.log(userEmail);
 
 	return (
 		<Form className={classes.form} method="POST" action="/profile">
@@ -39,7 +38,11 @@ const ProfileItem = () => {
 			<button type="submit">
 				{isSubmitting ? 'Sending...' : 'Change Password'}
 			</button>
-			{data && <p className={classes.message}>{data}</p>}
+			{data && typeof data === 'string' && (
+				<p className={classes.message}>{data}</p>
+			)}
+
+      {data && data.message && <p>{data.message}</p>}
 		</Form>
 	);
 };

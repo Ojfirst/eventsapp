@@ -10,7 +10,6 @@ import classes from './AuthForm.module.css';
 
 function AuthForm() {
 	const data = useActionData(); // Return data of an action
-  console.log(data);
 	const [searchParams] = useSearchParams();
 	const navigation = useNavigation();
 
