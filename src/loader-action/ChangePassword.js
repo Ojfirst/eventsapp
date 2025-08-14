@@ -49,7 +49,7 @@ const changePasswordAction = async ({ request }) => {
 		const responseData = await response.json();
 		if (responseData.ok) return 'Password changed successfully';
 		// TODO
-		return redirect('auth');
+		return redirect('../auth?mode=login');
 	} catch (error) {
 		if (error instanceof TypeError) {
 			return { message: 'An unknown error occurred!' };
