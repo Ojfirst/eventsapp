@@ -20,8 +20,11 @@ import AuthenticationPage from './routes/authentication/Authentication';
 import authAction from './loader-action/authAction';
 import tokenLoader, { checkAuthLoader } from './util/auth';
 import logoutAction from './routes/logout';
-import Profile from './routes/Profile';
+import Profile from './routes/profile/ProfileRoot';
 import changePasswordAction from './loader-action/ChangePassword';
+import EditPasswordPage from './routes/profile/EditPasswordPage';
+import AddProfile from './routes/profile/AddProfile';
+import EditProfile from './routes/profile/EditProfile';
 
 const router = createBrowserRouter([
 	{
@@ -70,9 +73,15 @@ const router = createBrowserRouter([
 			},
 			{
 				path: 'profile',
+				id: 'profile',
 				Component: Profile,
 				loader: checkAuthLoader,
 				action: changePasswordAction,
+				children: [
+					{ path: 'edit', Component: EditPasswordPage },
+          {path: 'new-profile', Component: AddProfile},
+          {path: 'edit-profile', Component: EditProfile}
+				],
 			},
 			{
 				path: 'newsletter',

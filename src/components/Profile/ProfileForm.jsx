@@ -1,12 +1,22 @@
 import React from 'react';
-import { Form } from 'react-router';
+import { Form, useNavigation } from 'react-router';
 
 import classess from './ProfileForm.module.css';
 
-const ProfileForm = () => {
+const ProfileForm = ({ method }) => {
+	
+	const navigation = useNavigation();
+
+	let isNewUser;
+	const isSavingData = navigation.state === 'submitting';
+
+
 	return (
 		<>
-			<Form className={classess.form}>
+			<Form method={method} className={classess.form}>
+				<h3 style={{ textAlign: 'center' }}>
+					{!isNewUser ? 'Create a profile' : 'Edit profile'}
+				</h3>
 				<p>
 					<label htmlFor="full-name"> Full name</label>
 					<input type="text" name="full-name" id="full-name" required />
@@ -26,7 +36,9 @@ const ProfileForm = () => {
 				</p>
 				<div className={classess.actions}>
 					<button type="button">Cancel</button>
-					<button type="button">Save</button>
+					<button type="button">
+						{isSavingData ? 'Saving profile...' : 'Save'}
+					</button>
 				</div>
 			</Form>
 		</>

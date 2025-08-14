@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, useNavigation, useActionData } from 'react-router';
 import { getUserEmail } from '../../util/auth';
 
-import classes from './ProfileItem.module.css';
+import classes from './ChangePasswordForm.module.css';
 
 const ChangePasswordForm = () => {
 	const data = useActionData(); // Return data of an action

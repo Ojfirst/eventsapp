@@ -3,7 +3,6 @@ import classes from './EventsList.module.css';
 
 function EventsList({ events }) {
        // Ensure events is an object and get its entries as [id, event] pairs
-       console.log('EventsList events:', events);
        if (!events || typeof events !== 'object') {
 	       return <div className={classes.error}>No events found.</div>;
        }
