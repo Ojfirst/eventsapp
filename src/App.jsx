@@ -25,6 +25,7 @@ import changePasswordAction from './loader-action/ChangePassword';
 import EditPasswordPage from './routes/profile/EditPasswordPage';
 import AddProfile from './routes/profile/AddProfile';
 import EditProfile from './routes/profile/EditProfile';
+import addProfileAction from './loader-action/AddProfileAction';
 
 const router = createBrowserRouter([
 	{
@@ -79,7 +80,7 @@ const router = createBrowserRouter([
 				action: changePasswordAction,
 				children: [
 					{ path: 'edit', Component: EditPasswordPage },
-          {path: 'new-profile', Component: AddProfile},
+          {path: 'new-profile', Component: AddProfile, action: addProfileAction},
           {path: 'edit-profile', Component: EditProfile}
 				],
 			},
