@@ -4,9 +4,15 @@ const Profile = () => {
 	return (
 		<>
 			<ul>
-				<Link to="new-profile">Create a new profile</Link>
-				<Link to="edit-profile">Edit profile</Link>
-				<Link to="edit">Edit Password</Link>
+				<li>
+					<Link to="new-profile">Create a new profile</Link>
+				</li>
+				<li>
+					<Link to="edit-profile">Edit profile</Link>
+				</li>
+				<li>
+					<Link to="edit">Edit Password</Link>
+				</li>
 			</ul>
 		</>
 	);
