@@ -1,29 +1,32 @@
 import { redirect } from 'react-router';
-import { getAuthToken } from '../util/auth';
+import { getAuthToken, getUserEmail } from '../util/auth';
 
 const addProfileAction = async ({ request }) => {
 	try {
 		const token = getAuthToken();
+    const userEmail= getUserEmail();
+
 		const data = await request.formData();
 
 		const fullName = data.get('full-name');
-		const contactEmail = data.get('contact-email');
+		const interest = data.get('interest');
 		const socialLink = data.get('social-link');
 
-		if (!token) {
+		if (!token ) {
 			throw new Response(JSON.stringify({ message: 'Unauthorized' }), {
 				status: 401,
 			});
 		}
 
-		if (!fullName && !contactEmail && socialLink) {
+		if (!fullName && !interest && socialLink) {
 			throw new Response(JSON.stringify({ message: 'No data found' }));
 		}
 
 		const userProfileData = {
 			fullName: fullName,
-			contactEmail: contactEmail,
+			interest: interest,
 			socialLink: socialLink,
+      userEmail: userEmail
 		};
 
 		const method = request.method;

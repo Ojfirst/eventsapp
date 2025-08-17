@@ -1,9 +1,12 @@
 import { Link } from 'react-router';
+import PrrofileItems from './PrrofileItems';
+import classes from './ProfileNavigation.module.css';
 
 const Profile = () => {
 	return (
 		<>
-			<ul>
+      <PrrofileItems />
+			<ul className={classes.container}>
 				<li>
 					<Link to="new-profile">Create a new profile</Link>
 				</li>
@@ -11,7 +14,7 @@ const Profile = () => {
 					<Link to="edit-profile">Edit profile</Link>
 				</li>
 				<li>
-					<Link to="edit">Edit Password</Link>
+					<Link to="changePassword">Edit Password</Link>
 				</li>
 			</ul>
 		</>

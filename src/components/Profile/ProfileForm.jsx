@@ -10,7 +10,7 @@ const ProfileForm = ({ method }) => {
 	const navigation = useNavigation();
   const navigate = useNavigate();
 
-	let isNewUser;
+
 	const isSavingData = navigation.state === 'submitting';
 
   const handleCancel = () => {
@@ -20,15 +20,15 @@ const ProfileForm = ({ method }) => {
 	return (
 		<Form method={method} className={classess.form}>
 			<h3 style={{ textAlign: 'center' }}>
-				{!isNewUser ? 'Create a profile' : 'Edit profile'}
+				{!data ? 'Create a profile' : 'Edit profile'}
 			</h3>
 			<p>
 				<label htmlFor="full-name"> Full name</label>
 				<input type="text" name="full-name" id="full-name" required />
 			</p>
 			<p>
-				<label htmlFor="contact-email">Contact email</label>
-				<input type="email" name="contact-email" id="contact-email" required />
+				<label htmlFor="contact-email">Interests</label>
+				<input type="text" name="interest" id="interest" required />
 			</p>
 			<p>
 				<label htmlFor="social-link">Social link</label>
