@@ -1,11 +1,13 @@
 import { Link } from 'react-router';
-import PrrofileItems from './PrrofileItems';
+import ProfileItems from './ProfileItems';
 import classes from './ProfileNavigation.module.css';
 
 const Profile = () => {
+
+  
 	return (
 		<>
-      <PrrofileItems />
+      <ProfileItems />
 			<ul className={classes.container}>
 				<li>
 					<Link to="new-profile">Create a new profile</Link>

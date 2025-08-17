@@ -15,8 +15,6 @@ const profileLoader = async () => {
 			'https://events-d92e9-default-rtdb.europe-west1.firebasedatabase.app/user-profile.json'
 		);
 
-    console.log('Fetching profile data...');
-
 		if (!response.ok) {
 			const errorData = await response.json();
 			if (errorData && errorData.error && errorData.error.message) {
@@ -25,7 +23,6 @@ const profileLoader = async () => {
 		}
 
 		const respData = await response.json();
-		console.log(respData);
     return respData || { message: 'No profile data found' };
 	} catch (error) {
 		if (error instanceof TypeError) {
