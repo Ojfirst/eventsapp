@@ -1,6 +1,11 @@
 .events {
   margin: 2rem auto;
   max-width: 40rem;
+  min-height: 100vh;
+
+  position: relative;
+  top: 10rem;
+  z-index: 1;
 }
 
 .list {

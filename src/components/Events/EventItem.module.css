@@ -6,6 +6,10 @@
   box-shadow: 2px 2px 4px var(--color-gray-700);
   border-radius: 4px;
   padding: 12px;
+
+  position: relative;
+  top: 10rem;
+  z-index: 1;
 }
 
 .event img {

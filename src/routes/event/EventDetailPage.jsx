@@ -3,6 +3,7 @@ import { Await, useRouteLoaderData } from 'react-router';
 
 import EventItem from '../../components/Events/EventItem';
 import EventsList from '../../components/Events/EventsList';
+import Footer from '../../components/Home/Footer';
 
 const EventDetailPage = () => {
 	const { event, events } = useRouteLoaderData('event-detail'); // Use the loader data from the route with id 'event-detail'
@@ -24,6 +25,7 @@ const EventDetailPage = () => {
 					{(loadEvent) => <EventsList events={loadEvent} />}
 				</Await>
 			</Suspense>
+      <Footer />
 		</>
 	);
 };
