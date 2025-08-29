@@ -23,6 +23,7 @@ const profileLoader = async () => {
 		}
 
 		const respData = await response.json();
+    console.log(respData);
     return respData || { message: 'No profile data found' };
 	} catch (error) {
 		if (error instanceof TypeError) {
