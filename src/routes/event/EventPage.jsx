@@ -14,7 +14,6 @@ const EventPage = () => {
 				<Await resolve={events}>
 					{(loadedEvents) => <EventsList events={loadedEvents} />}
 				</Await>
-				<Footer />
 			</Suspense>
 		</>
 	);

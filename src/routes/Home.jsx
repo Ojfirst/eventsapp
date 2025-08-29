@@ -11,10 +11,9 @@ const HomePage = () => {
 
 	return (
 		<div>
-			<PageContent title={'Welcome'}>
+			<PageContent>
 				<HeroSection />
 				<Features />
-				<Footer />
 			</PageContent>
 		</div>
 	);

@@ -3,6 +3,7 @@ import { useRouteError } from 'react-router';
 
 import MainNavigation from '../components/Home/MainNavigation';
 import PageContent from '../components/Home/PageContent';
+import Footer from '../components/Home/Footer';
 
 const ErrorPage = () => {
   const error = useRouteError();
@@ -22,11 +23,12 @@ const ErrorPage = () => {
 	return (
 		<>
 			<MainNavigation />
-			<main>
+			<main style={{'padding': '10rem', 'minHeight': '100vh'}}>
 				<PageContent title={title}>
 					<p>{message}</p>
 				</PageContent>
 			</main>
+      <Footer />
 		</>
 	);
 };

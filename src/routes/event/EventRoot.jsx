@@ -7,7 +7,7 @@ const EventRootLayer = () => {
 	return (
 		<>
 			<EventsNavigation />
-			<div>
+			<div style={{'minHeight': '100vh'}}>
 				<Outlet />
 			</div>
 		</>

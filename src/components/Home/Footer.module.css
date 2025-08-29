@@ -1,5 +1,7 @@
 /* Footer */
 footer {
+  position: relative;
+  bottom: 0;
   background: var(--surface);
   padding: 3rem 0;
   margin-top: 4rem;
