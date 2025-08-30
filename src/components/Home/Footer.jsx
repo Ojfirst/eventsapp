@@ -9,7 +9,7 @@ const Footer = () => {
 			<Card>
 				<div class={classes['footer-content']}>
 					<div class={classes['footer-section']}>
-						<h3>EventHub</h3>
+						<h3>Eventify</h3>
 						<p>
 							Discover and create extraordinary events with our cutting-edge
 							platform.
@@ -24,12 +24,12 @@ const Footer = () => {
 					</div>
 					<div class={classes['footer-section']}>
 						<h3>Contact Us</h3>
-						<p>Email: info@eventhub.com</p>
-						<p>Phone: +1 (555) 123-4567</p>
+						<p>Email: info@Eventify.com</p>
+						<p>Phone: +234 (806) 309-6363</p>
 					</div>
 				</div>
 				<div class={classes['footer-bottom']}>
-					<p>&copy; 2025 EventHub. All rights reserved.</p>
+					<p>&copy; 2025 Eventify. All rights reserved.</p>
 				</div>
 			</Card>
 		</footer>

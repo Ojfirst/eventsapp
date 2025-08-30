@@ -48,12 +48,14 @@
   transition: all 0.3s ease;
   font-size: 1rem;
   border: none;
+  text-decoration: none;
 }
 
 .btn-primary {
-  background: linear-gradient(to right, var(--primary), var(--primary-dark));
+  background: linear-gradient(to right, var(--primary), var(--color-primary-900
+));
   color: white;
-  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 4px 8px rgba(124, 58, 237, 0.4);
 }
 
 .btn-primary:hover {

@@ -1,6 +1,7 @@
 import React from 'react';
-import Card from '../UI/Card';
+import { Link } from 'react-router';
 
+import Card from '../UI/Card';
 import classes from './HeroSection.module.css';
 
 const HeroSection = () => {
@@ -19,12 +20,12 @@ const HeroSection = () => {
 							className={`${classes['hero-buttons']} ${classes.animate} ${
 								classes.delay - 2
 							}`}>
-							<button className={`${classes.btn} ${classes['btn-primary']}`}>
+							<Link to={'/events'} className={`${classes.btn} ${classes['btn-primary']}`}>
 								Explore Events
-							</button>
-							<button className={`${classes.btn} ${classes['btn-secondary']}`}>
+							</Link>
+							<Link className={`${classes.btn} ${classes['btn-secondary']}`}>
 								Learn More
-							</button>
+							</Link>
 						</div>
 					</div>
 				</Card>
