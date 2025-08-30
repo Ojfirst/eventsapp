@@ -4,8 +4,8 @@
   justify-content: center;
 
   position: relative;
-  top: 10rem;
   z-index: 1;
+  margin-top: 6rem;
 }
 
 .list {

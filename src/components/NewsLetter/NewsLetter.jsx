@@ -3,9 +3,11 @@ import PageContent from '../Home/PageContent';
 
 function NewsletterPage() {
   return (
-    <PageContent title="Join our awesome newsletter!">
+    <div style={{'padding': '10rem'}}>
+    <PageContent title="Join our awesome newsletter!" >
       <NewsletterSignup />
     </PageContent>
+    </div>
   );
 }
 
