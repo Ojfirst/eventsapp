@@ -1,0 +1,106 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: 100%;
+  padding: 1.5rem 0;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--glass-border);
+  z-index: 100;
+}
+
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  background-clip: inherit;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mobileNav {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 200;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(30, 41, 59, 0.9);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.hamburger span {
+  display: block;
+  width: 28px;
+  height: 4px;
+  margin: 4px 0;
+  background: linear-gradient(to right, var(--primary), var(--color-primary-900));
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(.4,2,.3,1);
+}
+.hamburger span.open:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger span.open:nth-child(2) {
+  opacity: 0;
+}
+.hamburger span.open:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+.menu {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: rgba(30, 41, 59, 0.98);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 180px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(.4,2,.3,1);
+}
+.menu.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.menu a {
+  color: var(--color-primary-100);
+  font-size: 1.2rem;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+.menu a:hover {
+  background: linear-gradient(to right, var(--primary), var(--color-primary-900));
+  color: #fff;
+}
+@media (min-width: 900px) {
+  .mobileNav {
+    display: none;
+  }
+}
