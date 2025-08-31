@@ -63,7 +63,7 @@ const ProfileItems = () => {
 						<Link to="edit-profile">Edit profile</Link>
 					</li>
 					<li>
-						<Link to="changePassword">Edit Password</Link>
+						<Link to="changePassword">Change Password</Link>
 					</li>
 					<li>
 						<Form action="/logout" method="post">
@@ -78,7 +78,7 @@ const ProfileItems = () => {
 		content = ProfileItems;
 	}
 
-	return <div style={{ paddingTop: '10rem' }}>{content}</div>;
+	return <div className={classes.outlet}>{content}</div>;
 };
 
 export default ProfileItems;
