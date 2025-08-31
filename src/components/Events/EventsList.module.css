@@ -40,5 +40,7 @@
 }
 
 @media (max-width: 768px) {
-  
+  .events {
+    max-width: 95%;
+  }
 }
