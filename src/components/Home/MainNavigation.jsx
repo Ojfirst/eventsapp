@@ -66,13 +66,6 @@ function MainNavigation() {
 								</NavLink>
 							</li>
 						)}
-						{token && (
-							<li>
-								<Form action="/logout" method="post">
-									<button>Logout</button>
-								</Form>
-							</li>
-						)}
 					</ul>
 					<NewsletterSignup />
 				</nav>

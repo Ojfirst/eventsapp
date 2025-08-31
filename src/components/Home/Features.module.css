@@ -8,6 +8,10 @@
   font-size: 2.5rem;
   margin-bottom: 3rem;
   font-weight: 700;
+  background: linear-gradient(to right, #ff8c00, #ff2d55);
+  background-clip: inherit;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .features-grid {
@@ -33,9 +37,11 @@
 .feature-icon {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
-  background: linear-gradient(to right, var(--primary), var(--color-primary-900));
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  background-clip: inherit;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
 }
 
 .feature-card h3 {

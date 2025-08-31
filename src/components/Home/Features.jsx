@@ -8,7 +8,7 @@ const Features = () => {
 		<>
 			<section className={classes['features']}>
 				<Card>
-					<h2 className={classes['section-title']}>Why Choose EventHub?</h2>
+					<h2 className={classes['section-title']}>Why Choose Eventify?</h2>
 					<div className={classes['features-grid']}>
 						<div
 							className={`${classes['feature-card']} ${classes.animate} ${

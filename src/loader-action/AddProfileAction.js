@@ -5,6 +5,7 @@ const addProfileAction = async ({ request }) => {
 	try {
 		const token = getAuthToken();
     const userEmail= getUserEmail();
+    const now = new Date();
 
 		const data = await request.formData();
 
@@ -26,7 +27,9 @@ const addProfileAction = async ({ request }) => {
 			fullName: fullName,
 			interest: interest,
 			socialLink: socialLink,
-      userEmail: userEmail
+      userEmail: userEmail,
+      date: now.toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}),
+      time: now.toLocaleTimeString('en-NG', {timeZone: 'Africa/Lagos'})
 		};
 
 		const method = request.method;

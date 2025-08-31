@@ -23,7 +23,8 @@
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 1.5rem;
-  background: linear-gradient(to right, var(--text-primary), var(--secondary));
+  background: linear-gradient(to right, #ff8c00, #ff2d55);
+  background-clip: inherit;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

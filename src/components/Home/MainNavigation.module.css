@@ -22,6 +22,7 @@ nav {
   font-size: 1.8rem;
   font-weight: 700;
   background: linear-gradient(to right, var(--primary), var(--secondary));
+  background-clip: inherit;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: flex;
@@ -47,6 +48,13 @@ nav {
 .list a.active {
   color: var(--color-primary-800);
   border-bottom: 1px solid var(--color-primary-800);
+}
+
+form button {
+  font: inherit;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0;
+  border: none;
 }
 
 

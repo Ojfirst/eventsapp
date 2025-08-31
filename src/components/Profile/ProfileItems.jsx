@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouteLoaderData } from 'react-router';
+import { useRouteLoaderData, Link, Form } from 'react-router';
 import { getUserEmail } from '../../util/auth';
 
 import classes from './ProfileItems.module.css';
@@ -7,8 +7,10 @@ import classes from './ProfileItems.module.css';
 const ProfileItems = () => {
 	const data = useRouteLoaderData('profile');
 
+	let content;
+
 	if (!data || typeof data !== 'object') {
-		return <p>No profile found</p>;
+		content = <p>No profile found</p>;
 	}
 
 	const storedEmail = getUserEmail();
@@ -17,9 +19,20 @@ const ProfileItems = () => {
 		(profile) => profile.userEmail === storedEmail
 	)?.userEmail;
 
-
 	if (!userEmail || userEmail !== storedEmail) {
-		return <p>You do not have permission to view this profile.</p>;
+		content = (
+			<ul className={classes.container}>
+				<h2>Profile</h2>
+				<li>
+					<Link to="new-profile">Create a new profile</Link>
+				</li>
+				<li>
+					<Form action="/logout" method="post">
+						<button>Logout</button>
+					</Form>
+				</li>
+			</ul>
+		);
 	}
 
 	// Single user profile item rendering
@@ -28,15 +41,44 @@ const ProfileItems = () => {
 		.map((profile) => (
 			<div key={profile.id} className={classes.container}>
 				<h2>Profile</h2>
-				<p>Fullname: {profile.fullName}</p>
-        <p>Interest: {profile.interest}</p>
-				<p>Email: {profile.userEmail}</p>
-        <p>Social Link: {profile.socialLink}</p>
-        <p>Created at: {new Date(profile.createdAt).toLocaleDateString()}</p>
+				<h4>{profile.userEmail}</h4>
+				<p>
+					Fullname: <span className={classes.data}>{profile.fullName}</span>
+				</p>
+				<p>
+					Interest: <span className={classes.data}>{profile.interest}</span>
+				</p>
+				<p>
+					Social Link:{' '}
+					<span className={classes.data}>{profile.socialLink}</span>
+				</p>
+				<p>
+					Created at:{' '}
+					<span className={classes.data}>
+						{profile.date}, {profile.time}
+					</span>
+				</p>
+				<ul>
+					<li>
+						<Link to="edit-profile">Edit profile</Link>
+					</li>
+					<li>
+						<Link to="changePassword">Edit Password</Link>
+					</li>
+					<li>
+						<Form action="/logout" method="post">
+							<button>Logout</button>
+						</Form>
+					</li>
+				</ul>
 			</div>
 		));
 
-	return <div>{ProfileItems}</div>;
+	if (ProfileItems.length > 0) {
+		content = ProfileItems;
+	}
+
+	return <div style={{ paddingTop: '10rem' }}>{content}</div>;
 };
 
 export default ProfileItems;

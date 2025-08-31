@@ -12,7 +12,7 @@ const HeroSection = () => {
 					<div className={classes['hero-content']}>
 						<h1 className={classes.animate}>Discover Extraordinary Events</h1>
 						<p className={`${classes.animate} ${classes.delay - 1}`}>
-							EventHub is your premier platform for finding, managing, and
+							Eventify is your premier platform for finding, managing, and
 							attending the most exciting events of 2025 and beyond. Experience
 							events like never before.
 						</p>
