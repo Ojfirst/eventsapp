@@ -20,7 +20,7 @@ const Features = () => {
 							<h3>Easy Registration</h3>
 							<p>
 								Secure your spot at any event with just a few clicks. No hassle,
-								no complications.
+								no complications
 							</p>
 						</div>
 						<div
