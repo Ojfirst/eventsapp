@@ -1,0 +1,16 @@
+{
+  "routes": [
+    {
+      "src": "/auth",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/auth\\?mode=login",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/auth\\?mode=signup",
+      "dest": "/index.html"
+    }
+  ]
+}
