@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router';
+import { NavLink, useRouteLoaderData } from 'react-router';
 import classes from './MobileMenu.module.css';
 
 const MobileMenu = () => {
 	const [open, setOpen] = useState(false);
+
+	const token = useRouteLoaderData('root');
 
 	return (
 		<div className={classes.header}>
@@ -30,9 +32,11 @@ const MobileMenu = () => {
 					<NavLink to="/newsletter" onClick={() => setOpen(false)}>
 						Newsletter
 					</NavLink>
-					<NavLink to="/profile" onClick={() => setOpen(false)}>
-						Profile
-					</NavLink>
+					{token && (
+						<NavLink to="/profile" onClick={() => setOpen(false)}>
+							Profile
+						</NavLink>
+					)}
 					<NavLink to="/auth?mode=login" onClick={() => setOpen(false)}>
 						Login
 					</NavLink>
