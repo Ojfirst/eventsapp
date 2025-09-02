@@ -14,15 +14,26 @@ const ChangePasswordForm = () => {
 
 	return (
 		<Form className={classes.form} method="POST" action="/profile">
-			<p>User email: {userEmail}</p>
+			{userEmail && <p>User email: {userEmail}</p>}
 
-			<label htmlFor="password">Change password</label>
+			{!userEmail && (
+				<input
+					type="email"
+					id="email"
+					name="email"
+					autoFocus
+					autoComplete="email"
+					placeholder="Email"
+					required
+				/>
+			)}
+
 			<input
 				type="password"
 				id="new-password"
 				name="new-password"
 				autoFocus
-				autoComplete="email"
+				autoComplete="password"
 				placeholder="New password"
 				required
 			/>
@@ -31,7 +42,7 @@ const ChangePasswordForm = () => {
 				id="confirm-password"
 				name="confrim-password"
 				autoFocus
-				autoComplete="email"
+				autoComplete="password"
 				placeholder="Confirm password"
 				required
 			/>

@@ -37,9 +37,11 @@ const MobileMenu = () => {
 							Profile
 						</NavLink>
 					)}
-					<NavLink to="/auth?mode=login" onClick={() => setOpen(false)}>
-						Login
-					</NavLink>
+					{!token && (
+						<NavLink to="/auth?mode=login" onClick={() => setOpen(false)}>
+							Login
+						</NavLink>
+					)}
 				</div>
 			</nav>
 		</div>

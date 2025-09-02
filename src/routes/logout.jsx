@@ -14,6 +14,7 @@ const logoutAction = async ({ request }) => {
   localStorage.removeItem('token');
   localStorage.removeItem('userId');
   localStorage.removeItem('expiration');
+  localStorage.removeItem('email');
   console.log('User logged out successfully');
   return redirect('/');
 }

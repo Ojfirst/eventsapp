@@ -9,10 +9,7 @@ lerna-debug.log*
 
 node_modules
 *.local
-<<<<<<< HEAD
 dist
-=======
->>>>>>> 5a68955cb319a07ca31acaa05c4b40cf992aac34
 
 # Editor directories and files
 .vscode/*

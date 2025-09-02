@@ -79,7 +79,11 @@ const router = createBrowserRouter([
 				Component: Profile,
 				loader: profileLoader,
 				children: [
-					{ path: 'changePassword', Component: EditPasswordPage, action: changePasswordAction },
+					{
+						path: 'changePassword',
+						Component: EditPasswordPage,
+						action: changePasswordAction,
+					},
 					{
 						path: 'new-profile',
 						Component: AddProfile,
@@ -99,6 +103,11 @@ const router = createBrowserRouter([
 				action: authAction,
 			},
 			{ path: 'logout', action: logoutAction },
+			{
+				path: 'changePassword',
+				Component: EditPasswordPage,
+				action: changePasswordAction,
+			},
 		],
 	},
 ]);

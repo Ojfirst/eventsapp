@@ -35,13 +35,18 @@ function AuthForm() {
 					<label htmlFor="image">Password</label>
 					<input id="password" type="password" name="password" required />
 				</p>
-				<div className={classes.actions}>
-					<Link to={`?mode=${isLogin ? 'signup' : 'login'}`}>
-						{isLogin ? 'Create new user' : 'Login'}
-					</Link>
-					<button disabled={isSubmitting}>
-						{isSubmitting ? 'Submitting...' : 'Send'}
-					</button>
+				<div className={classes.links}>
+					<div className={classes.actions}>
+						<Link to={'../changePassword'}>Forgot password</Link>
+					</div>
+					<div className={classes.actions}>
+						<Link to={`?mode=${isLogin ? 'signup' : 'login'}`}>
+							{isLogin ? 'Create new user' : 'Login'}
+						</Link>
+						<button disabled={isSubmitting}>
+							{isSubmitting ? 'Submitting...' : 'Send'}
+						</button>
+					</div>
 				</div>
 			</Form>
 		</>
