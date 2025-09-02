@@ -6,7 +6,7 @@ import classes from './ChangePasswordForm.module.css';
 
 const ChangePasswordForm = () => {
 	const data = useActionData(); // Return data of an action
-	console.log(data);
+	
 	const navigation = useNavigation();
 	const userEmail = getUserEmail();
 
@@ -14,26 +14,18 @@ const ChangePasswordForm = () => {
 
 	return (
 		<Form className={classes.form} method="POST" action="/profile">
-			{userEmail && <p>User email: {userEmail}</p>}
+			
+      <p>User email: {userEmail}</p>
 
-			{!userEmail && (
-				<input
-					type="email"
-					id="email"
-					name="email"
-					autoFocus
-					autoComplete="email"
-					placeholder="Email"
-					required
-				/>
-			)}
 
+
+			<label htmlFor="password">Change password</label>
 			<input
 				type="password"
 				id="new-password"
 				name="new-password"
 				autoFocus
-				autoComplete="password"
+				autoComplete="email"
 				placeholder="New password"
 				required
 			/>
@@ -42,7 +34,7 @@ const ChangePasswordForm = () => {
 				id="confirm-password"
 				name="confrim-password"
 				autoFocus
-				autoComplete="password"
+				autoComplete="email"
 				placeholder="Confirm password"
 				required
 			/>

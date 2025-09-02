@@ -6,56 +6,44 @@ import classes from './ProfileItems.module.css';
 
 const ProfileItems = () => {
 	const data = useRouteLoaderData('profile');
-
-	let content;
-
-	if (!data || typeof data !== 'object') {
-		content = <p>No profile found</p>;
-	}
-
 	const storedEmail = getUserEmail();
 
-	let userEmail = Object.values(data).find(
-		(profile) => profile.userEmail === storedEmail
-	)?.userEmail;
-
-	if (!userEmail || userEmail !== storedEmail) {
-		content = (
-			<ul className={classes.container}>
-				<h2>Profile</h2>
-				<li>
-					<Link to="new-profile">Create a new profile</Link>
-				</li>
-				<li>
-					<Form action="/logout" method="post">
-						<button>Logout</button>
-					</Form>
-				</li>
-			</ul>
+	// Handle cases where data is not available or not an object
+	if (!data || typeof data !== 'object') {
+		return (
+			<div className={classes.outlet}>
+				<p>Could not load profile data.</p>
+			</div>
 		);
 	}
 
-	// Single user profile item rendering
-	const ProfileItems = Object.values(data)
-		.filter((profile) => profile.userEmail === userEmail)
-		.map((profile) => (
-			<div key={profile.id} className={classes.container}>
+	// Find the user's specific profile from the data
+	const userProfile = Object.values(data).find(
+		(profile) => profile.userEmail === storedEmail
+	);
+
+	let content;
+
+	// Render the profile if it exists
+	if (userProfile) {
+		content = (
+			<div key={userProfile.id} className={classes.container}>
 				<h2>Profile</h2>
-				<h4>{profile.userEmail}</h4>
+				<h4>{userProfile.userEmail}</h4>
 				<p>
-					Fullname: <span className={classes.data}>{profile.fullName}</span>
+					Fullname: <span className={classes.data}>{userProfile.fullName}</span>
 				</p>
 				<p>
-					Interest: <span className={classes.data}>{profile.interest}</span>
+					Interest: <span className={classes.data}>{userProfile.interest}</span>
 				</p>
 				<p>
 					Social Link:{' '}
-					<span className={classes.data}>{profile.socialLink}</span>
+					<span className={classes.data}>{userProfile.socialLink}</span>
 				</p>
 				<p>
 					Created at:{' '}
 					<span className={classes.data}>
-						{profile.date}, {profile.time}
+						{userProfile.date}, {userProfile.time}
 					</span>
 				</p>
 				<ul>
@@ -72,10 +60,22 @@ const ProfileItems = () => {
 					</li>
 				</ul>
 			</div>
-		));
-
-	if (ProfileItems.length > 0) {
-		content = ProfileItems;
+		);
+	} else {
+		// Render a "create profile" view if no profile is found for the user
+		content = (
+			<ul className={classes.container}>
+				<h2>Profile</h2>
+				<li>
+					<Link to="new-profile">Create a new profile</Link>
+				</li>
+				<li>
+					<Form action="/logout" method="post">
+						<button>Logout</button>
+					</Form>
+				</li>
+			</ul>
+		);
 	}
 
 	return <div className={classes.outlet}>{content}</div>;

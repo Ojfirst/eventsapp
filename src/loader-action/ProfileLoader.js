@@ -1,13 +1,13 @@
-import React from 'react';
 import { getAuthToken } from '../util/auth';
 
 const profileLoader = async () => {
 	const token = getAuthToken();
 	if (!token || token === 'Expired') {
-		return { message: 'You are not authenticated' };
-	}
-	if (token === 'Expired') {
-		return { message: 'Your session has expired, please log in again' };
+		const message =
+			token === 'Expired'
+				? 'Your session has expired, please log in again.'
+				: 'You are not authenticated.';
+		return { message };
 	}
 
 	try {
@@ -16,24 +16,25 @@ const profileLoader = async () => {
 		);
 
 		if (!response.ok) {
-			const errorData = await response.json();
-			if (errorData && errorData.error && errorData.error.message) {
-				return { message: errorData.error.message };
-			}
+			// By returning here, we prevent trying to read the response body twice.
+			return { message: 'Could not fetch profile data.' };
 		}
 
 		const respData = await response.json();
+		// This is the key fix. If no profiles exist, return an empty object.
+		// This is a valid "empty" state, not an error state. Your component
+		// will correctly render the "Create a new profile" link.
 		if (!respData || Object.keys(respData).length === 0) {
-			return null;
+			return {};
 		}
 
 		return respData;
-
 	} catch (error) {
+		// This will catch network errors (e.g., no internet connection).
 		if (error instanceof TypeError) {
 			return { message: 'Please check your connection' };
 		}
-		return { message: error.message };
+		return { message: error.message || 'An unknown error occurred.' };
 	}
 };
 export default profileLoader;
