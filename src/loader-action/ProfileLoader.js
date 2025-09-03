@@ -21,9 +21,7 @@ const profileLoader = async () => {
 		}
 
 		const respData = await response.json();
-		// This is the key fix. If no profiles exist, return an empty object.
-		// This is a valid "empty" state, not an error state. Your component
-		// will correctly render the "Create a new profile" link.
+
 		if (!respData || Object.keys(respData).length === 0) {
 			return {};
 		}
