@@ -12,7 +12,7 @@ function MainNavigation() {
 			<Card>
 				<nav>
 					<div className={classes.logo}>
-						<i className="fas fa-calendar-star"></i>
+						<i class="fas fa-calendar-star"></i>
 						Eventify
 					</div>
 					<ul className={classes.list}>

@@ -59,4 +59,13 @@
     width: 90%;
     margin: 1rem auto;
   }
+
+  .links {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .links .actions:first-child {
+    justify-content: flex-start;
+  }
 }
