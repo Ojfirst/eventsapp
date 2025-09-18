@@ -23,7 +23,8 @@ const getAuthToken = () => {
 	if (!token) return;
 
 	const tokenDuration = gettokenExpiration();
-	if (tokenDuration < 0) {
+	if (tokenDuration <= 0) {
+    localStorage.clear();
 		return 'Expired';
 	}
 
