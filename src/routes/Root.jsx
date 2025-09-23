@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router';
-
+import ScrollToTop from '../util/ScrollToTop';
 import MainNavigation from '../components/Home/MainNavigation';
 import MobileMenu from '../components/Home/MobileMenu';
 import { useIsMobile } from '../components/Home/useIsMobile';
@@ -10,6 +10,7 @@ const RootLayer = () => {
   const isMobile = useIsMobile();
   return (
     <>
+      <ScrollToTop />
       {isMobile ? <MobileMenu /> : <MainNavigation />}
       <main style={{ minHeight: '100vh' }}>
         <Outlet />
