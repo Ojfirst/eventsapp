@@ -7,8 +7,9 @@ const gettokenExpiration = () => {
 	// convert to date object
 	const expirationDate = new Date(storedExpirationDate);
 	const now = new Date();
-	const duration = expirationDate.getTime() - now.getTime();
-	return duration;
+	const remainingDuration = expirationDate.getTime() - now.getTime();
+  console.log(remainingDuration);
+	return remainingDuration;
 };
 
 const getUserEmail = () => {
@@ -25,7 +26,7 @@ const getAuthToken = () => {
 	const tokenDuration = gettokenExpiration();
 	if (tokenDuration <= 0) {
     localStorage.clear();
-		return 'Expired';
+		return redirect('/auth');
 	}
 
 	return token;
