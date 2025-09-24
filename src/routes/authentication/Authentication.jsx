@@ -4,6 +4,8 @@ import AuthForm from '../../components/Auth/AuthForm';
 import Modal from '../../components/UI/Modal';
 
 function AuthenticationPage() {
+
+  
 	const [showModal, setShowModal] = useState(true);
 
 	const removeModalHandler = () => {

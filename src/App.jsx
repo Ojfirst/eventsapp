@@ -18,7 +18,7 @@ import NewsletterPage from './components/NewsLetter/NewsLetter';
 import newsLetterAction from './loader-action/NewLetterAction';
 import AuthenticationPage from './routes/authentication/Authentication';
 import authAction from './loader-action/authAction';
-import tokenLoader, { checkAuthLoader } from './util/auth';
+import tokenLoader, { checkAuthLoader, isAuthenticated } from './util/auth';
 import logoutAction from './routes/logout';
 import Profile from './routes/profile/ProfileRoot';
 import changePasswordAction from './loader-action/ChangePassword';
@@ -101,6 +101,7 @@ const router = createBrowserRouter([
 				path: 'auth',
 				Component: AuthenticationPage,
 				action: authAction,
+        loader: isAuthenticated,
 			},
 			{ path: 'logout', action: logoutAction },
 			{

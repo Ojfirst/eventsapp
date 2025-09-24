@@ -43,5 +43,13 @@ const checkAuthLoader = () => {
 	}
 };
 
-export { getAuthToken, gettokenExpiration, checkAuthLoader, getUserEmail };
+const isAuthenticated = () => {
+  const token = getAuthToken();
+
+  if (token) {
+    return redirect('/');
+  }
+}
+
+export { getAuthToken, gettokenExpiration, checkAuthLoader, getUserEmail, isAuthenticated };
 export default tokenLoader;
